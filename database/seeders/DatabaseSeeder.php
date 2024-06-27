@@ -6,8 +6,13 @@ use App\Models\AgenteComercial;
 use Database\Seeders\models\AgenciaSeeder;
 use Database\Seeders\models\CiudadSeeder;
 use Database\Seeders\models\ClienteSeeder;
+use Database\Seeders\models\HistorialVisitaSeeder;
 use Database\Seeders\models\InmuebleSeeder;
+use Database\Seeders\models\InmueblesTypeSeeder;
 use Database\Seeders\models\PersonaSeeder;
+use Database\Seeders\models\PreferenciasSeeder;
+use Database\Seeders\models\RegistranSeeder;
+use Database\Seeders\models\TrabajanSeeder;
 use Database\Seeders\models\ZonaSeeder;
 use Illuminate\Database\Seeder;
 
@@ -18,12 +23,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(PersonaSeeder::class);
-        $this->call(CiudadSeeder::class);
-        $this->call(AgenteComercial::class);
-        $this->call(ClienteSeeder::class);
-        $this->call(AgenciaSeeder::class);
-        $this->call(ZonaSeeder::class);
-        $this->call(InmuebleSeeder::class);
+        $this->call([
+            PersonaSeeder::class,
+            CiudadSeeder::class,
+            AgenteComercial::class,
+            ClienteSeeder::class,
+            AgenciaSeeder::class,
+            ZonaSeeder::class,
+            InmuebleSeeder::class,
+            InmueblesTypeSeeder::class,
+            PreferenciasSeeder::class,
+            TrabajanSeeder::class,
+            RegistranSeeder::class,
+            HistorialVisitaSeeder::class
+        ]);
     }
 }
