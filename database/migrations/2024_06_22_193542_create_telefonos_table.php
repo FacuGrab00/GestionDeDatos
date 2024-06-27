@@ -8,8 +8,8 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('telefonos', function (Blueprint $table) {
-            $table->integer('num_tel')->unsigned();
-            $table->integer('cod_area')->unsigned();
+            $table->string('num_tel');
+            $table->string('cod_area');
             $table->string('DNI', 20);
             $table->primary(['DNI', 'num_tel']);
             $table->foreign('DNI')->references('DNI')->on('personas')->onDelete('cascade');

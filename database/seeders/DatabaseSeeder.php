@@ -12,6 +12,7 @@ use Database\Seeders\models\InmueblesTypeSeeder;
 use Database\Seeders\models\PersonaSeeder;
 use Database\Seeders\models\PreferenciasSeeder;
 use Database\Seeders\models\RegistranSeeder;
+use Database\Seeders\models\TelefonoSeeder;
 use Database\Seeders\models\TrabajanSeeder;
 use Database\Seeders\models\ZonaSeeder;
 use Illuminate\Database\Seeder;
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PersonaSeeder::class,
+            TelefonoSeeder::class,
             CiudadSeeder::class,
             AgenteComercial::class,
             ClienteSeeder::class,
@@ -35,7 +37,8 @@ class DatabaseSeeder extends Seeder
             PreferenciasSeeder::class,
             TrabajanSeeder::class,
             RegistranSeeder::class,
-            HistorialVisitaSeeder::class
+            HistorialVisitaSeeder::class,
+
         ]);
     }
 }
