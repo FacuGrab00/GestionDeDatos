@@ -9,13 +9,15 @@ return new class extends Migration {
     {
         Schema::create('registran', function (Blueprint $table) {
             $table->string('codigo_de_agencia', 20);
-            $table->string('DNI', 20);
+            $table->string('DNI_cliente', 20);
+            $table->string('codigo_cliente', 20);
             $table->string('DNI_agente', 20);
-            $table->primary(['codigo_de_agencia', 'DNI']);
-            $table->foreign('codigo_de_agencia')->references('codigo_de_agencia')->on('agencias')->onDelete('cascade');
-            $table->foreign('DNI')->references('DNI')->on('clientes')->onDelete('cascade');
-            $table->foreign('DNI_agente')->references('DNI')->on('agentes_comerciales')->onDelete('cascade');
-            $table->timestamps();
+            $table->date('fecha_registro');
+
+            $table->primary(['codigo_de_agencia', 'DNI_cliente']);
+            $table->foreign('codigo_de_agencia')->references('codigo_de_agencia')->on('agencias');
+            $table->foreign(['DNI_cliente', 'codigo_cliente'])->references(['DNI', 'codigo_cliente'])->on('clientes');
+            $table->foreign('DNI_agente')->references('DNI')->on('agentes_comerciales');
         });
     }
 

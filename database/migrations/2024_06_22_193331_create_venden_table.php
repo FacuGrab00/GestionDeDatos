@@ -8,15 +8,15 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('venden', function (Blueprint $table) {
-            $table->string('DNI', 20);
+            $table->string('DNI_cliente', 20);
+            $table->string('codigo_cliente', 20);
             $table->string('DNI_agente', 20);
-            $table->integer('codigo_inmueble');
-            $table->date('fecha_disponible');
-            $table->primary(['DNI', 'DNI_agente', 'codigo_inmueble']);
-            $table->foreign('DNI')->references('DNI')->on('clientes')->onDelete('cascade');
-            $table->foreign('DNI_agente')->references('DNI')->on('agentes_comerciales')->onDelete('cascade');
-            $table->foreign('codigo_inmueble')->references('codigo_inmueble')->on('inmuebles')->onDelete('cascade');
-            $table->timestamps();
+            $table->string('codigo_inmueble', 20);
+            $table->date('fecha_venta');
+            $table->primary(['DNI_cliente', 'codigo_cliente', 'DNI_agente', 'codigo_inmueble']);
+            $table->foreign(['DNI_cliente', 'codigo_cliente'])->references(['DNI', 'codigo_cliente'])->on('clientes');
+            $table->foreign('DNI_agente')->references('DNI')->on('agentes_comerciales');
+            $table->foreign('codigo_inmueble')->references('codigo_inmueble')->on('inmuebles');
         });
     }
 

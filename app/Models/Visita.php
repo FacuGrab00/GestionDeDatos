@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HistorialVisitas extends Model
+class Visita extends Model
 {
     use HasFactory;
 
-    protected $table = 'historial_visitas';
+    protected $table = 'visitas';
 
-    protected $primaryKey = 'id_historial';
+    protected $primaryKey = 'id_visita';
 
     public $incrementing = true;
     protected $keyType = 'int';
@@ -24,6 +24,7 @@ class HistorialVisitas extends Model
         'codigo_cliente',
         'DNI_agente',
         'codigo_inmueble',
+        'estado'
     ];
 
     public $timestamps = false;

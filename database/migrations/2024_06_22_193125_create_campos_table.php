@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('campos', function (Blueprint $table) {
-            $table->integer('codigo_inmueble')->primary();
+            $table->string('codigo_inmueble', 20)->primary();
             $table->decimal('superficie', 10, 2);
             $table->boolean('urbanizacion')->default(false);
             $table->foreign('codigo_inmueble')->references('codigo_inmueble')->on('inmuebles')->onDelete('cascade');

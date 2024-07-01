@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('preferencias', function (Blueprint $table) {
             $table->integer('secuencia')->notNull();
             $table->string('DNI', 20);
-            $table->integer('codigo_cliente');
+            $table->string('codigo_cliente', 20);
             $table->date('fecha')->notNull();
             $table->integer('numero_de_habitaciones')->notNull();
             $table->decimal('precio_maximo', 10, 2)->nullable();

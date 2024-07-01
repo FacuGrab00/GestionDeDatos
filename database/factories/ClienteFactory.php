@@ -11,14 +11,17 @@ class ClienteFactory extends Factory
 {
     protected $model = Cliente::class;
 
+    private static $codigoClientePrefix = 'A';
+    private static $currentCodigoClienteNumber = 0;
+
     public function definition()
     {
-        $dniList = Persona::whereNotIn('DNI', AgenteComercial::pluck('DNI')->toArray())->pluck('DNI')->toArray();
+        $codigoCliente = self::$codigoClientePrefix . str_pad(self::$currentCodigoClienteNumber, 3, '0', STR_PAD_LEFT);
+        self::$currentCodigoClienteNumber++;
 
         return [
-            'DNI' => $this->faker->unique()->randomElement($dniList),
-            'fecha_registro' => $this->faker->date(),
-            'codigo_cliente' => $this->faker->unique()->numberBetween(1000, 9999),
+            'DNI' => Persona::whereNotIn('DNI', AgenteComercial::pluck('DNI')->toArray())->pluck('DNI')->random(),
+            'codigo_cliente' => $codigoCliente,
         ];
     }
 }

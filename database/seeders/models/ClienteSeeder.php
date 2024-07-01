@@ -11,12 +11,6 @@ class ClienteSeeder extends Seeder
 {
     public function run(): void
     {
-        $personas = Persona::whereNotIn('DNI', AgenteComercial::pluck('DNI'))->inRandomOrder()->limit(10000)->get();
-
-        foreach ($personas as $persona) {
-            Cliente::factory()->create([
-                'DNI' => $persona->DNI,
-            ]);
-        }
+        Cliente::factory()->count(9000)->create();
     }
 }

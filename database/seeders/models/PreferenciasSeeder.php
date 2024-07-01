@@ -18,15 +18,18 @@ class PreferenciasSeeder extends Seeder
         $clientes = Cliente::all();
 
         foreach ($clientes as $cliente) {
+            $precioMaximo = $faker->numberBetween(50, 500) * 1000;
+            $precioMinimo = $faker->numberBetween(10, 49) * 1000;
+
             Preferencia::create([
                 'secuencia' => $faker->unique()->numberBetween(100000, 999999),
                 'DNI' => $cliente->DNI,
                 'codigo_cliente' => $cliente->codigo_cliente,
                 'fecha' => $faker->date(),
                 'numero_de_habitaciones' => $faker->numberBetween(1, 5),
-                'precio_maximo' => $faker->randomFloat(2, 50000, 500000),
-                'precio_minimo' => $faker->randomFloat(2, 10000, 49999),
-                'tipo' => $faker->randomElement(['Casa', 'Departamento', 'Duplex']),
+                'precio_maximo' => $precioMaximo,
+                'precio_minimo' => $precioMinimo,
+                'tipo' => $faker->randomElement(['Vivienda', 'Campo', 'Local comercial']),
             ]);
         }
     }

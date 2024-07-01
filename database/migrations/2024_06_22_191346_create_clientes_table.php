@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->string('DNI', 20);
-            $table->integer('codigo_cliente');
+            $table->string('codigo_cliente', 20);
             $table->date('fecha_registro');
             $table->primary(['DNI', 'codigo_cliente']);
             $table->foreign('DNI')->references('DNI')->on('personas')->onDelete('cascade');

@@ -9,6 +9,6 @@ class AgenteComercialSeeder extends Seeder
 {
     public function run(): void
     {
-        AgenteComercial::factory()->count(100)->create();
+        AgenteComercial::factory()->count(1000)->create();
     }
 }

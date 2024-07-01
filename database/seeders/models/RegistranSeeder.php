@@ -14,22 +14,25 @@ class RegistranSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-
         $clientes = Cliente::all();
         $agencias = Agencia::all();
 
         foreach ($clientes as $cliente) {
-            $agencia = $faker->randomElement($agencias);
-
-            $agentes = Trabajan::where('codigo_de_agencia', $agencia->codigo_de_agencia)->pluck('DNI')->toArray();
+            $agentes = [];
+            while (!(count($agentes) > 0)) {
+                $agencia = $faker->randomElement($agencias);
+                $agentes = Trabajan::where('codigo_de_agencia', $agencia->codigo_de_agencia)->pluck('DNI')->toArray();
+            }
 
             if (count($agentes) > 0) {
                 $agente = $faker->randomElement($agentes);
 
                 Registran::create([
-                    'DNI' => $cliente->DNI,
+                    'DNI_cliente' => $cliente->DNI,
+                    'codigo_cliente' => $cliente->codigo_cliente,
                     'codigo_de_agencia' => $agencia->codigo_de_agencia,
                     'DNI_agente' => $agente,
+                    'fecha_registro' => $faker->date(),
                 ]);
             }
         }

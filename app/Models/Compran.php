@@ -11,14 +11,19 @@ class Compran extends Model
 
     protected $table = 'compran';
 
-    protected $primaryKey = ['DNI', 'DNI_agente', 'codigo_inmueble'];
+    protected $primaryKey = ['DNI_cliente', 'codigo_cliente', 'DNI_agente', 'codigo_inmueble'];
 
     public $incrementing = false;
 
     protected $fillable = [
-        'DNI',
+        'DNI_cliente',
+        'codigo_cliente',
         'DNI_agente',
         'codigo_inmueble',
+        'fecha_compra',
+    ];
+
+    protected $dates = [
         'fecha_compra',
     ];
 
@@ -26,7 +31,7 @@ class Compran extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class, 'DNI', 'DNI');
+        return $this->belongsTo(Cliente::class, ['DNI_cliente', 'codigo_cliente'], ['DNI', 'codigo_cliente']);
     }
 
     public function agenteComercial()

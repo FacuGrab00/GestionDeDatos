@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('viviendas', function (Blueprint $table) {
-            $table->integer('codigo_inmueble')->primary();
+            $table->string('codigo_inmueble', 20)->primary();
             $table->integer('banios');
             $table->integer('numero_habitaciones');
             $table->string('descripcion', 255)->nullable();

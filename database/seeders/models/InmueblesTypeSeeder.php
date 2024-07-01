@@ -6,6 +6,7 @@ use App\Models\Campo;
 use App\Models\Inmueble;
 use App\Models\LocalComercial;
 use App\Models\Vivienda;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class InmueblesTypeSeeder extends Seeder
@@ -34,26 +35,33 @@ class InmueblesTypeSeeder extends Seeder
 
     private function generateAttributes($type, $codigo_inmueble)
     {
+        $faker = Faker::create();
         switch ($type) {
             case Campo::class:
+                $superficie = $faker->numberBetween(1, 100) * 100;
+
                 return [
                     'codigo_inmueble' => $codigo_inmueble,
-                    'superficie' => fake()->numberBetween(100, 10000),
+                    'superficie' => $superficie,
                     'urbanizacion' => fake()->boolean(),
                 ];
             case LocalComercial::class:
+                $area = $faker->numberBetween(5, 50) * 10;
+
                 return [
                     'codigo_inmueble' => $codigo_inmueble,
-                    'area' => fake()->numberBetween(50, 500),
-                    'uso' => fake()->word(),
+                    'area' => $area,
+                    'uso' => fake()->randomElement(['Supermercado', 'Kiosco', 'Indumentaria', 'Bazar', 'Peluqueria', 'Shopping']),
                 ];
             case Vivienda::class:
+                $superficie = $faker->numberBetween(5, 30) * 10;
+
                 return [
                     'codigo_inmueble' => $codigo_inmueble,
                     'banios' => fake()->numberBetween(1, 3),
                     'numero_habitaciones' => fake()->numberBetween(1, 5),
                     'descripcion' => fake()->text(200),
-                    'superficie' => fake()->numberBetween(50, 300),
+                    'superficie' => $superficie,
                     'plaza_garaje' => fake()->boolean(),
                 ];
         }

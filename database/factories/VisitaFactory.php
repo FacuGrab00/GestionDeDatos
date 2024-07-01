@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\HistorialVisitas;
+use App\Models\Visita;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class HistorialVisitasFactory extends Factory
+class VisitaFactory extends Factory
 {
-    protected $model = HistorialVisitas::class;
+    protected $model = Visita::class;
 
     public function definition()
     {

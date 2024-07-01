@@ -10,15 +10,19 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class AgenciaFactory extends Factory
 {
     protected $model = Agencia::class;
+    private static $codigoAgenciaPrefix = 'A';
+    private static $currentCodigoAgenciaNumber = 0;
 
     public function definition()
     {
-        $ciudadId = Ciudad::inRandomOrder()->first()->id_ciudad;
+        $codigoAgencia = self::$codigoAgenciaPrefix . str_pad(self::$currentCodigoAgenciaNumber, 3, '0', STR_PAD_LEFT);
+        self::$currentCodigoAgenciaNumber++;
+
         return [
-            'codigo_de_agencia' => $this->faker->unique()->regexify('[A-Z0-9]{10}'),
+            'codigo_de_agencia' => $codigoAgencia,
             'direccion' => $this->faker->address,
             'telefono' => $this->faker->phoneNumber,
-            'id_ciudad' => $ciudadId,
+            'id_ciudad' => Ciudad::inRandomOrder()->first()->id_ciudad,
         ];
     }
 }

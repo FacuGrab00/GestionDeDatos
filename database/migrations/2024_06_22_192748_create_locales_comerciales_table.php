@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('locales_comerciales', function (Blueprint $table) {
-            $table->integer('codigo_inmueble')->primary();
+            $table->string('codigo_inmueble', 20)->primary();
             $table->decimal('area', 10, 2);
             $table->string('uso', 255)->nullable();
             $table->foreign('codigo_inmueble')->references('codigo_inmueble')->on('inmuebles')->onDelete('cascade');
