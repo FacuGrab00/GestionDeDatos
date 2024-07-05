@@ -13,7 +13,7 @@ class AgenciaSeeder extends Seeder
         $ciudades = Ciudad::all();
 
         foreach ($ciudades as $ciudad) {
-            Agencia::factory()->count(2)->create([
+            Agencia::factory()->count(1)->create([
                 'id_ciudad' => $ciudad->id_ciudad,
             ]);
         }
