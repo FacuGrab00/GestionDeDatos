@@ -14,7 +14,7 @@ class ClienteFactory extends Factory
     private static $codigoClientePrefix = 'A';
     private static $currentCodigoClienteNumber = 0;
 
-    public function definition()
+    public function definition(): array
     {
         $codigoCliente = self::$codigoClientePrefix . str_pad(self::$currentCodigoClienteNumber, 3, '0', STR_PAD_LEFT);
         self::$currentCodigoClienteNumber++;
